@@ -32,10 +32,7 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Fetching USERS API"),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text("Fetching USERS API"), centerTitle: true),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -45,7 +42,6 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
             child: FutureBuilder(
               future: getUserDetails(),
               builder: (builder, AsyncSnapshot<List<UserModel>> snapshot) {
-                
                 if (!snapshot.hasData) {
                   return CircularProgressIndicator();
                 } else {
@@ -55,15 +51,9 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
                       return Card(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Name:"),
-                                  Text(snapshot.data![index].name.toString()),
-                                ],
-                              ),
+                          child: Column(children: [
+                             _showUserDetails(title: "Name:", value: snapshot.data![index].name.toString()),
+                             
                             ],
                           ),
                         ),
@@ -78,4 +68,21 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
       ),
     );
   }
+}
+
+Widget _showUserDetails(
+  {
+    required String title,
+    required String value,
+
+
+  }
+) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Text(title), 
+      Text(value),
+        ],
+  );
 }
