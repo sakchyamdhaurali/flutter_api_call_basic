@@ -53,15 +53,19 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
                     itemCount: userList.length,
                     itemBuilder: (context, index) {
                       return Card(
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text("Name:"),
-                                Text(snapshot.data![index].name.toString()),
-                              ],
-                            ),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text("Name:"),
+                                  Text(snapshot.data![index].name.toString()),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
