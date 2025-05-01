@@ -32,9 +32,45 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text("Fetching USERS API"),
+        centerTitle: true,
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Center(child: Text("Second Screen"))],
+        children: [
+          Center(child: Text("Second Screen")),
+
+          Expanded(
+            child: FutureBuilder(
+              future: getUserDetails(),
+              builder: (builder, AsyncSnapshot<List<UserModel>> snapshot) {
+                
+                if (!snapshot.hasData) {
+                  return CircularProgressIndicator();
+                } else {
+                  return ListView.builder(
+                    itemCount: userList.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text("Name:"),
+                                Text(snapshot.data![index].name.toString()),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                }
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
