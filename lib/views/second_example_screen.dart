@@ -55,7 +55,7 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
                              _showUserDetails(title: "Name:", value: snapshot.data![index].name.toString()),
                              _showUserDetails(title: "Username:", value: snapshot.data![index].username.toString()),
                              _showUserDetails(title: "Email:", value: snapshot.data![index].username.toString()),
-                             _showUserDetails(title: "Address:", value: snapshot.data![index].address!.city.toString()),
+                             _showUserDetails(title: "Address:", value: "${snapshot.data![index].address!.city}  ${snapshot.data![index].address!.geo!.lat}"),
 
 
 
@@ -78,7 +78,7 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
 Widget _showUserDetails(
   {
     required String title,
-    required String value,
+    required value,
 
 
   }
