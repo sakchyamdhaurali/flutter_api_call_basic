@@ -119,6 +119,24 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
+
+           GestureDetector(
+            onTap: () {
+             
+            },
+            child: Container(
+              width: 200,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.black),
+              ),
+              child: Center(
+                child: Text("Next Example"),
+              ),
+            ),
+          ),
         ],
       ),
     );
