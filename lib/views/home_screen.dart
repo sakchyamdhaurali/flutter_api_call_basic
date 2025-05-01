@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool isPressed = false;
   List<RandomAPI> postList = [];
   Future<List<RandomAPI>> getPostAPI() async {
     final response = await http.get(
@@ -48,43 +49,69 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(child: Text("Calling API")),
-          Expanded(
-            child: FutureBuilder(
-              future: getPostAPI(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Text("Loading");
-                } else {
-                  return ListView.builder(
-                    itemCount: postList.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                         
-                            Text("ID ${postList[index].id}", style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),),
+          Visibility(
+            visible: isPressed,
+            child: Expanded(
+              child: FutureBuilder(
+                future: getPostAPI(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Text("Loading");
+                  } else {
+                    return ListView.builder(
+                      itemCount: postList.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "ID ${postList[index].id}",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
 
-                            Text("Title", style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                            ),),
-                            Text(postList[index].title.toString()),
-                          
-                          
-                          ],
-                                                ),
-                        ));
-                    },
-                  );
-                }
-              },
+                                Text(
+                                  "Title",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Text(postList[index].title.toString()),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
+          ),
+          SizedBox(height: 5),
+
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isPressed = !isPressed;
+              });
+            },
+            child: Container(
+              width: 200,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.black),
+              ),
+              child: Center(child: isPressed? Text("Hide API"): Text("Call API")),
             ),
           ),
         ],
