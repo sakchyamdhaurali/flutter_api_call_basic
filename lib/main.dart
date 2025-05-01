@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api_call_basic/views/home_screen.dart';
+import 'package:flutter_api_call_basic/views/second_example_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context)=> HomeScreen(),
-        "/SecondExample": (context)=> SecondExample(),
+        "/SecondExample": (context)=> SecondExampleScreen(),
 
       },
     );
