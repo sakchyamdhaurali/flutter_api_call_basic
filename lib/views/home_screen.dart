@@ -120,9 +120,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-           GestureDetector(
+          GestureDetector(
             onTap: () {
-             
+              Navigator.pushNamed(context, "/SecondExample");
             },
             child: Container(
               width: 200,
@@ -132,9 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.black),
               ),
-              child: Center(
-                child: Text("Next Example"),
-              ),
+              child: Center(child: Text("Next Example")),
             ),
           ),
         ],
