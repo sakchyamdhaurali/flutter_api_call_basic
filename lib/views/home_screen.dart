@@ -15,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isPressed = false;
   List<RandomAPI> postList = [];
   Future<List<RandomAPI>> getPostAPI() async {
+    postList.clear();
     final response = await http.get(
       Uri.parse("https://jsonplaceholder.typicode.com/posts"),
     );
@@ -56,7 +57,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 future: getPostAPI(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return Text("Loading");
+                    return Column(
+                      children: [CircularProgressIndicator(), Text("Loading")],
+                    );
                   } else {
                     return ListView.builder(
                       itemCount: postList.length,
@@ -111,7 +114,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.black),
               ),
-              child: Center(child: isPressed? Text("Hide API"): Text("Call API")),
+              child: Center(
+                child: isPressed ? Text("Hide API") : Text("Call API"),
+              ),
             ),
           ),
         ],
