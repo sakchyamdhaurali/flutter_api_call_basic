@@ -1,12 +1,12 @@
-class Sample {
+class RandomAPI {
   int? userId;
   int? id;
   String? title;
   String? body;
 
-  Sample({this.userId, this.id, this.title, this.body});
+  RandomAPI({this.userId, this.id, this.title, this.body});
 
-  Sample.fromJson(Map<String, dynamic> json) {
+  RandomAPI.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
     id = json['id'];
     title = json['title'];
