@@ -36,7 +36,7 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Text("Second Screen")),
+          Center(child: Text("USER DETAILS", style: TextStyle(fontSize: 22),)),
 
           Expanded(
             child: FutureBuilder(
@@ -53,7 +53,12 @@ class _SecondExampleScreenState extends State<SecondExampleScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(children: [
                              _showUserDetails(title: "Name:", value: snapshot.data![index].name.toString()),
-                             
+                             _showUserDetails(title: "Username:", value: snapshot.data![index].username.toString()),
+                             _showUserDetails(title: "Email:", value: snapshot.data![index].username.toString()),
+                             _showUserDetails(title: "Address:", value: snapshot.data![index].address.toString()),
+      
+
+
                             ],
                           ),
                         ),
@@ -78,11 +83,14 @@ Widget _showUserDetails(
 
   }
 ) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Text(title), 
-      Text(value),
-        ],
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(title), 
+        Text(value),
+          ],
+    ),
   );
 }
